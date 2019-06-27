@@ -8,7 +8,7 @@ void loop(){
 	Serial.println("Hola");
 	Serial.println(i);
 	i=i+1;
-	if (i>253){
+	if (i>254){
 		i=0;
 	}
 	delay(500);
