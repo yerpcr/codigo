@@ -30,12 +30,15 @@ file.write(o)
 ser = serial.Serial('/dev/ttyO2',9600)
 ser.write(n)
 a = time.time()
+ent="";
 while 1 :
     s = ser.readline()
-    if s!='Hola':
-        texto = str(int(s)) + "\t" + str (time.time()) + "\n"
-        file.write(texto)
-        print(texto)
-    else: 
-        print (s)
-
+    if (s=="*"):
+        ent+="\n"
+        print (ent)
+        file.write(ent)
+        ent=""
+    else:
+        ent += "\t"
+        ent += s
+    
