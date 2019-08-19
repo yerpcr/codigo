@@ -1,14 +1,25 @@
 const int sensor = A0;
 const int n = 500;
 int i=0,j=0;
-double x[]={0,0,0,0,0};
+int x[]={0,0,0,0,0};
 float m=0;
-int n_analogos=0,espera=500;
+int n_analogos=0,espera=500,listo=1;
+int led = 13;
 void setup(){
-	Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  digitalWrite(led,0);
+	Serial.begin(9600); 
+  while(listo){
 	if (Serial.available()>0){
 	n_analogos = Serial.read();
-	}	
+	Serial.print(n_analogos);
+	}
+ if( n_analogos>48 && n_analogos<55){
+    n_analogos=n_analogos-48;
+    listo=0;
+    digitalWrite(led,1);
+  }
+  }
 }
 void loop(){
 	for (i=0;i<n_analogos; i++){
