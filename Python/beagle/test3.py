@@ -1,7 +1,11 @@
 import time 
 import serial 
 import os
-
+import Adafruit_BBIO.GPIO as GPIO
+pinLed = "P8_10"
+pinSalida = "P8_12"
+GPIO.setup (pinLed,GPIO.OUT)
+GPIO.setup (pinSalida, GPIO.OUT)
 
 def main ():
     
@@ -18,6 +22,10 @@ def main ():
     print ("Inicio de datos")
     a = time.time()
     ent=""
+    
+    GPIO.output (pinLed, GPIO.LOW)
+    GPIO.output (pinSalida, GPIO.LOW)
+
     while True :
         ent=entradaDatos(arduino,ent,archivo1)
 
@@ -49,9 +57,13 @@ def envioVariables(n,ser):
     nulo = b''
     test = 0
     while(test!=n):
+        GPIO.output(pinLed,GPIO.HIGH)
+        GPIO.output(pinSalida, GPIO.HIGH)
         ser.write(str.encode(str(n)))
         while (ser.inWaiting()):
             time.sleep(0.01)
+        GPIO.output(pinLed,GPIO.LOW)
+        GPIO.output(pinSalida,GPIO.LOW)
         q=ser.readline()
         print (q)
         if (q!=nulo):
