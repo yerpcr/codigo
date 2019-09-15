@@ -13,7 +13,7 @@ def main ():
     n_variables = Variables (archivo1)
 
     puerto = input("Ingrese el nombre del puero:\n")
-    arduino = serial.Serial(puerto,9600,timeout=0.5)
+    arduino = serial.Serial(puerto,2400,timeout=0.5)
     
     print("Serial configurado\n")
     
