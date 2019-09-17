@@ -1,5 +1,5 @@
 String indata="",read_String="";
-const int n = 500;
+const int n = 200;
 int i=0,j=0,k=0;
 int x[]={0,0,0,0,0};
 float m=0;
@@ -12,7 +12,7 @@ void setup(){
   pinMode(habilitar,OUTPUT);
   digitalWrite(led,0);
   digitalWrite(habilitar,0);
-	Serial.begin(9600); 
+	Serial.begin(2400); 
   while(listo){
     read_String="";
     digitalWrite(habilitar,0);
@@ -39,7 +39,6 @@ void setup(){
     if (read_String=="5")n_analogos=5;
     if (read_String=="6")n_analogos=6;
     if(n_analogos>0&&n_analogos<7){
-    
       listo=0;
       digitalWrite(led,1);
       

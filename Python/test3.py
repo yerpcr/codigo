@@ -2,13 +2,14 @@ import time
 import serial 
 import os
 
+nulo = b''
 
 def main ():
     
     archivo1 = crearArchivo()
     n_variables = Variables (archivo1)
-
-    arduino = serial.Serial('COM3',9600,timeout=0.5)
+    puerto = input("Digitel el nombre del puerto:\n")
+    arduino = serial.Serial(puerto,9600,timeout=0.5)
     
     print("Serial configurado\n")
     
@@ -45,7 +46,6 @@ def Variables(file):
     return(n)
 
 def envioVariables(n,ser):
-    nulo = b''
     test = 0
     while(test!=n):
         ser.write(str.encode(str(n)))
@@ -77,9 +77,12 @@ def entradaDatos(ser,entrada,file):
         file.write(entrada)
         entrada=""
     else:
-        entrada += "\t"
-        entrada += str(int(s))
-        print (s)
+        if (s == nulo):
+            print("Nulo\n")
+        else:
+            entrada += "\t"
+            entrada += str(int(s))
+            print (s)
     return(entrada)
 
 main ()
