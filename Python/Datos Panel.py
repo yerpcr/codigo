@@ -32,23 +32,27 @@ def main ():
     archivo1.close()
     entrada = ""
     pp = 0
+    nulo = b''
     while True :
         archivo2 = open (archivo,'a')
         s = arduino.readline()
-        if (s == b'*\r\n'):
-            r=1
-            entrada+="\t"
-            tiempo = time.time()-seg
-            entrada+=str(tiempo)
-            entrada+="\n"
-            print (entrada,"OK")
-            archivo2.write(str(entrada))
-            entrada = ""
-        else:
-            r=0
-            entrada += "\t"
-            x = a*float(s)/b+c
-            entrada += str(x)
+        if (s!=nulo):
+            if (s == b'*\r\n'):
+                entrada+="\t"
+                tiempo = time.time()-seg
+                entrada+=str(tiempo)
+                entrada+="\n"
+                print (entrada,"OK")
+                archivo2.write(str(entrada))
+                entrada = ""
+            else:
+                try:
+                    x = (a*float(s)/b)+c
+                except:
+                    print ("\nProblema con el dato:",s)
+                else:
+                    entrada += "\t"
+                    entrada += str(x)
 
 def Variables():
     while (True):
