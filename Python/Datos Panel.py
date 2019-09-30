@@ -3,7 +3,7 @@ import serial
 import os
 
 r = 0
-a = 110.0
+a = 431.0
 b = 1023.0
 c = 0.0
 seg = 0
